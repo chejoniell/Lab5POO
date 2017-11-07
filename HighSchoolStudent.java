@@ -1,33 +1,50 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package ejerciciopolimor;
+
+import org.mongodb.morphia.annotations.Entity;
 
 
+
+@Entity(value="Students")
 public class HighSchoolStudent extends Student {
-    public float entry;
-    public float first;
-    public float second;
-    public float third;
+ 
+    private float first;
+    private float second;
+    private float third;
     
     HighSchoolStudent(){
         super();
-        entry = 0;
+  
         first = 0;
         second = 0;
         third = 0;
                 
     }
     
-    @Override
+    
+    /**
+	 * @param name
+	 * @param dpi
+	 * @param math
+	 * @param history
+	 * @param spanish
+	 * @param entry
+	 * @param first
+	 * @param second
+	 * @param third
+	 */
+	public HighSchoolStudent(String name, String dpi, float math, float history, float spanish, 
+			float first, float second, float third) {
+		super(name, dpi, math, history, spanish);
+		
+		this.first = first;
+		this.second = second;
+		this.third = third;
+	}
+
+
+	@Override
     public float get_average() {
-        return (float) ((float) (.60*((this.first + this.second + this.third)/3)) + ((this.entry)*.40));
+        return (float) ((float) (.60*((this.first + this.second + this.third)/3)) + (((history+spanish+history)/3)*.40));
     }
 
-    private void Super() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 }
